@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import geocoder from 'geocoder-geojson'
+import Geocode from "react-geocode";
 
 import './App.css';
 import Menu from '../menu'
@@ -11,7 +11,7 @@ class App  extends Component {
   super()
     this.state = {
       movies    : [],
-      limit     : 45,
+      limit     : 25,
       offset    : 0,
       query     : '',
       loadMore  : false,
@@ -25,7 +25,9 @@ class App  extends Component {
 
   componentDidMount() {
     this.updateWindowDimensions();
-    console.log(process.env.REACT_APP_API_TOKEN)
+    Geocode.setApiKey(process.env.REACT_APP_API_GOOGLE_TOKEN);
+    Geocode.enableDebug();
+
     window.addEventListener('resize', this.updateWindowDimensions);
 
   }
@@ -64,14 +66,18 @@ class App  extends Component {
             var count = 1;
             data.forEach(function(movie){
               if (movie.locations){
-                geocoder.google(movie.locations.toString())
-                .then(function(geojson){
-                  movie['geo'] = geojson.features
-                  count += 1;        
-                  if (count === data.length){
-                    resolve(data)
-                  }
-                })
+                  Geocode.fromAddress(movie.locations).then(
+                    response => {
+                      movie['geo'] = response.results[0].geometry.location;
+                      count += 1;  
+                      if (count === data.length){
+                        resolve(data)
+                      }
+                    },
+                    error => {
+                      console.error(error);
+                    }
+                  );
               }else{
                 count += 1         
                 if (count === data.length){
@@ -83,7 +89,6 @@ class App  extends Component {
           });
 
           Promise.all([promise]).then(values => {
-            console.log(component.state.loadMore)
             if (component.state.loadMore){
               component.setState(prevState => ({
                 movies: prevState.movies.concat(values[0]),
@@ -101,8 +106,6 @@ class App  extends Component {
   filterData = (type) => {
     var arr;
     if (type === 'title'){
-      var re = /([a-z]+)(\d+)(.+)/i;
-
       arr = this.state.movies.sort( function(a,b){
          var ax = [], bx = [];
 

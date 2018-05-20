@@ -18,6 +18,7 @@ class Movies extends Component {
   }
 
   coordinates = (movie, type) => {
+    console.log(movie)
     if (type === 'lat'){
       return (movie.geo && movie.geo.length > 0) ? movie.geo[0].geometry.coordinates[0] : false
     }else{
@@ -39,13 +40,15 @@ class Movies extends Component {
                   <p className="title">{movie.title}</p>
                   <p className="grey">{movie.release_year}</p>
                 </div>
-                {(this.coordinates(movie, 'lat') && !isipad)&&(
+                {(movie.geo != [] && !isipad)&&(
                   <p className='location grey'>Location:</p>
                 )}
+                {movie.geo  &&(
                 <div className="coordinates">
-                  <p>{this.coordinates(movie, 'lat')}</p>
-                  <p>{this.coordinates(movie, 'long')}</p>
+                  <p>{movie.geo.lat}</p>
+                  <p>{movie.geo.lng}</p>
                 </div>
+                )}
               </div>
               )
             )
