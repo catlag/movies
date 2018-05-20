@@ -1,0 +1,125 @@
+.movies-wrapper{
+  display: flex;
+  flex-wrap: wrap;
+  margin-left: 20%;
+  padding-left: 3em;
+}
+.movie-wrapper{
+  height: 13em;
+  width: 12em;
+  background-color: #eeeeee;
+  border: 1px solid #9B9B9B;
+  border-radius: 20px 0px 20px 0px;
+  padding: 2em 1em;
+  margin: .5em;
+  text-align: left;
+}
+.title{
+  font-weight: bold;
+  font-size: 1.5em;
+}
+.container{
+  width: 100%;
+}
+.location{
+  margin:1em 0em .5em;
+}
+.grey{
+  color: #888888;
+}
+.coordinates p{
+  margin-bottom: 0px
+}
+
+/*ipad portrait*/
+@media all and (device-width: 768px) and (device-height: 1024px) and (orientation:portrait) {
+  .movies-wrapper{
+    margin-left: 0;
+    margin-top: 25%;
+    justify-content: center;
+    padding: 3%;
+  }
+  .movie-wrapper{
+    width: 30%;
+    height: 10em;
+    padding: 1em;
+  }
+  .title{
+    font-size: 1.5em;
+    margin-bottom: 0px;
+  }
+  .load-more-wrapper{
+    display: flex;
+    justify-content: center;
+    width: 100%;
+  }
+  .load-more-button-movies{
+    height: 3em;
+    background-color: #ffffff !important;
+    color: #1681de !important;
+    margin: 2em;
+  }
+  .movie-name-date-wrapper{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: .5em;
+    height: 4em;
+  }
+  .movie-name-date-wrapper p:last-child{
+    font-size: 1.5em;
+  }
+}
+
+@media all and (device-width: 1024px) and (device-height: 1366px) and (orientation:portrait) {
+  .movies-wrapper{
+    margin-left: 0;
+    margin-top: 25%;
+    justify-content: center;
+    padding: 3%;
+  }
+  .movie-wrapper{
+    width: 20em;
+    height: 10em;
+    padding: 1em;
+  }
+  .title{
+    font-size: 1.5em;
+    margin-bottom: 0px;
+  }
+  .load-more-wrapper{
+    display: flex;
+    justify-content: center;
+    width: 100%;
+  }
+  .load-more-button-movies{
+    height: 3em;
+    background-color: #ffffff !important;
+    color: #1681de !important;
+    margin: 2em;
+  }
+  .movie-name-date-wrapper{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: .5em;
+    height: 4em;
+  }
+  .movie-name-date-wrapper p:last-child{
+    font-size: 1.5em;
+  }
+}
+
+/*mobile*/
+@media only screen and (max-width: 600px) {
+  .movies-wrapper{
+    margin-left: 0;
+    margin-top: 55%;
+    padding-left: 0px;
+    justify-content: center;
+  }
+  .movie-wrapper{
+    width: 44%;
+  }
+}
+

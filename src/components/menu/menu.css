@@ -1,0 +1,125 @@
+.menu-wrapper{
+  background-color: #f3f3f3;
+  padding: 5em 3em 1em 3em;
+  text-align: left;
+  display: flex;
+  flex-flow: column;
+  justify-content: space-between;
+  position: fixed;
+}
+.menu-title{
+  font-size: 2em;
+  font-weight: bold;
+  margin-bottom: 0px;
+}
+.menu-form{
+  margin-top: 2em;
+}
+.load-more-button{
+  height: 3em;
+  background-color: #ffffff !important;
+  color: #1681de !important;
+}
+
+@media all and (device-width: 768px) and (device-height: 1024px) and (orientation:portrait) {
+  .menu-wrapper{
+    text-align: center;
+    height: 18%;
+    padding: 3em 3em 1em 3em;
+  }
+  .menu-title{
+    display: inline;
+    font-size: 2.5em;
+  }
+  .menu-form{
+    display: flex;
+  }
+  .form-input-wrapper{
+    width: 50%;
+    margin: 0px !important;
+  }
+  .form-sort-wrapper{
+    display: flex !important;
+    align-items: center;
+    margin-left: 4em !important;
+    width: 50%;
+  }
+  .form-sort-wrapper .field{
+    display: flex !important;
+    justify-content: center;
+    align-items: center;
+    margin-left: 2em !important;
+  }
+  .form-sort-wrapper  .field label{
+    display: flex !important;
+    align-items: center;
+  }
+}
+
+/*ipad pro portrait*/
+@media all and (device-width: 1024px) and (device-height: 1366px) and (orientation:portrait) {
+
+  .menu-wrapper{
+    text-align: center;
+    height: 15%;
+    padding: 3em 3em 1em 3em;
+  }
+  .menu-title{
+    display: inline;
+    font-size: 2.5em;
+  }
+  .menu-form{
+    display: flex;
+  }
+  .form-input-wrapper{
+    width: 50%;
+    margin: 0px !important;
+  }
+  .form-sort-wrapper{
+    display: flex !important;
+    align-items: center;
+    margin-left: 4em !important;
+    width: 50%;
+  }
+  .form-sort-wrapper .field{
+    display: flex !important;
+    justify-content: center;
+    align-items: center;
+    margin-left: 2em !important;
+  }
+  .form-sort-wrapper  .field label{
+    display: flex !important;
+    align-items: center;
+  }
+}
+
+/*mobile*/
+@media only screen and (max-width: 600px) {
+  .menu-wrapper{
+    text-align: center;
+    height: auto;
+    padding: 2em 1em 1em 1em;
+  }
+  .menu-title{
+    display: inline;
+    font-size: 1.5em;
+  }
+  .menu-form{
+    display: flex;
+    justify-content: center;
+    flex-flow: column;
+    align-items: center;
+  }
+  .form-input-wrapper{
+    width: 100%;
+  }
+  .form-sort-wrapper{
+    margin-top: 2em !important;
+    display: flex !important;
+    align-items: center;
+    justify-content: space-around;
+    width: 100%;
+  }
+
+}
+

@@ -1,0 +1,102 @@
+.App {
+  text-align: center;
+  height: 100%
+}
+
+.App-logo {
+  animation: App-logo-spin infinite 20s linear;
+  height: 80px;
+}
+
+.App-header {
+  background-color: #222;
+  height: 150px;
+  padding: 20px;
+  color: white;
+}
+
+.App-title {
+  font-size: 1.5em;
+}
+
+.App-intro {
+  font-size: large;
+}
+
+
+.container{
+  display: flex;
+  flex-flow: row;
+  height: 100%
+}
+.menu-wrapper{
+  width: 20%;
+  height: 100%
+}
+.movies-wrapper{
+  width: 80%;
+  height: 100%;
+}
+.sort-label{
+  font-weight: bold !important;
+  font-size: 1.25em;
+}
+/*ipad portrait*/
+@media all and (device-width: 768px) and (device-height: 1024px) and (orientation:portrait) {
+  .App { background-color: red; } /* your css rules for ipad portrait */
+  .container{
+    display: flex;
+    flex-flow: column;
+    height: 100%
+  }
+
+  .menu-wrapper{
+    width: 100%;
+    height: 20%;
+  }
+
+  .movies-wrapper{
+    width: 100%;
+  }
+}
+
+/*ipad pro portrait*/
+@media all and (device-width: 1024px) and (device-height: 1366px) and (orientation:portrait) {
+  .App { background-color: red; } /* your css rules for ipad portrait */
+  .container{
+    display: flex;
+    flex-flow: column;
+    height: 100%
+  }
+
+  .menu-wrapper{
+    width: 100%;
+    height: 20%;
+  }
+
+  .movies-wrapper{
+    width: 100%;
+  }
+}
+
+
+/*mobile*/
+@media only screen and (max-width: 600px) {
+    .App {
+        background-color: lightblue;
+    }
+  .container{
+    display: flex;
+    flex-flow: column;
+    height: 100%
+  }
+
+  .menu-wrapper{
+    width: 100%;
+    height: 20%;
+  }
+
+  .movies-wrapper{
+    width: 100%;
+  }
+}
