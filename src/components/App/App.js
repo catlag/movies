@@ -1,6 +1,4 @@
 import React, { Component } from 'react';
-import Geocode from "react-geocode";
-
 import './App.css';
 import Menu from '../menu'
 import Movies from '../movies'
@@ -25,9 +23,6 @@ class App  extends Component {
 
   componentDidMount() {
     this.updateWindowDimensions();
-    Geocode.setApiKey(process.env.REACT_APP_API_GOOGLE_TOKEN);
-    Geocode.enableDebug();
-
     window.addEventListener('resize', this.updateWindowDimensions);
 
   }
@@ -66,18 +61,16 @@ class App  extends Component {
             var count = 1;
             data.forEach(function(movie){
               if (movie.locations){
-                  Geocode.fromAddress(movie.locations).then(
-                    response => {
-                      movie['geo'] = response.results[0].geometry.location;
-                      count += 1;  
-                      if (count === data.length){
-                        resolve(data)
-                      }
-                    },
-                    error => {
-                      console.error(error);
+                var location = movie.locations + "San Francisco"
+                fetch(`${process.env.REACT_APP_GOOGLE_URL}${location}&key=${process.env.REACT_APP_API_GOOGLE_TOKEN}`).then(function(resp){
+                  return resp.json()
+                }).then(function(geo){
+                  movie['geo'] = geo.results[0].geometry.location;
+                   count += 1;  
+                    if (count === data.length){
+                      resolve(data)
                     }
-                  );
+                })
               }else{
                 count += 1         
                 if (count === data.length){
