@@ -43,45 +43,44 @@ class App  extends Component {
         loadMore: false
       })
     }
-    var self = this 
-    var url
-    var search = ("%"+query+"%")
+    var self = this;
+    var url;
+    var search = ("%"+query+"%");
     if (numType){
       url = `https://data.sfgov.org/resource/wwmu-gmzc.json?$$app_token=${process.env.REACT_APP_API_TOKEN}&$limit=${this.state.limit}&$offset=0&$where=title like '${encodeURIComponent(search)}%' OR release_year = '${encodeURIComponent(query)}'`
     }else {
       url = `https://data.sfgov.org/resource/wwmu-gmzc.json?$$app_token=${process.env.REACT_APP_API_TOKEN}&$limit=${this.state.limit}&$offset=${this.state.offset}&$where=title like '${encodeURIComponent(search)}'`
     }
     fetch(url)
-        .then(function(resp){
-          return (resp.json())
-        }) 
-        .then(function(data) {
-         var component = self 
-          var promise = new Promise(function(resolve) {
-            var count = 1;
-            data.forEach(function(movie){
-              if (movie.locations){
-                var location = movie.locations + "San Francisco"
-                fetch(`${process.env.REACT_APP_GOOGLE_URL}${location}&key=${process.env.REACT_APP_API_GOOGLE_TOKEN}`).then(function(resp){
-                  return resp.json()
-                }).then(function(geo){
-                  movie['geo'] = geo.results[0].geometry.location;
-                   count += 1;  
-                    if (count === data.length){
-                      resolve(data)
-                    }
-                })
-              }else{
-                count += 1         
-                if (count === data.length){
-                  resolve(data)
-                }
+      .then(function(resp){
+        return (resp.json())
+      }) 
+      .then(function(data) {
+        var component = self 
+        var promise = new Promise(function(resolve) {
+          var count = 1;
+          data.forEach(function(movie){
+            if (movie.locations){
+              var location = movie.locations + "San Francisco"
+              fetch(`${process.env.REACT_APP_GOOGLE_URL}${location}&key=${process.env.REACT_APP_API_GOOGLE_TOKEN}`).then(function(resp){
+                return resp.json()
+              }).then(function(geo){
+                movie['geo'] = geo.results[0].geometry.location;
+                 count += 1;  
+                  if (count === data.length){
+                    resolve(data)
+                  }
+              })
+            }else{
+              count += 1         
+              if (count === data.length){
+                resolve(data)
               }
+            }
+          })
+        });
 
-            })
-          });
-
-          Promise.all([promise]).then(values => {
+        Promise.all([promise]).then(values => {
             if (component.state.loadMore){
               component.setState(prevState => ({
                 movies: prevState.movies.concat(values[0]),
@@ -94,6 +93,10 @@ class App  extends Component {
             console.log(reason)
           });
       })
+  }
+
+  clearSearchData = () => {
+    this.setState({query: '', movies: [], limit : 25, offset : 0,})
   }
 
   filterData = (type) => {
@@ -128,7 +131,7 @@ class App  extends Component {
     return (
       <div className="App">
         <div className='container'>
-          <Menu searchFunction={this.callApi} sortFunction={this.filterData} ipad={ipad} mobile={mobile}/>
+          <Menu searchFunction={this.callApi} clearSearchFunction={this.clearSearchData} sortFunction={this.filterData} ipad={ipad} mobile={mobile}/>
           <Movies movies={this.state.movies} ipad={ipad} mobile={mobile} />
         </div>
       </div>

@@ -11,26 +11,24 @@ class Menu extends Component {
       query: '',
       release_year: false,
       title: false,
+      numQuery: false,
     }
   }
 
   handleChange = (event) => {
-    if(isNaN(event.target.value)){
-      this.setState({
-        query: event.target.value,
-        numQuery: false
-      });
+    this.setState({
+      query: event.target.value
+    });
+    if (event.target.value){
+      this.props.searchFunction(event.target.value, (!isNaN(event.target.value)), this.state.filterYear, this.state.filterTitle)
     }else{
-      this.setState({
-        query: event.target.value,
-        numQuery: true
-      });
+      this.setState({title: false, release_year: false})
+      this.props.clearSearchFunction()
     }
-    this.callApi()
   }
 
   loadMore = (event) =>{
-    this.callApi()
+    this.props.searchFunction(this.state.query, !(isNaN(this.state.query)), this.state.filterYear, this.state.filterTitle)
   }
 
   handleSortChange = (event) => {
@@ -52,13 +50,8 @@ class Menu extends Component {
     this.props.sortFunction(name)
   }
 
-  callApi = () => {
-    this.props.searchFunction(this.state.query, this.state.numQuery, this.state.filterYear, this.state.filterTitle)
-  }
-
   render() {
     const button = this.props.mobile || this.props.ipad
-    console.log(button)
     return (
       <div className="menu-wrapper">
         <div>

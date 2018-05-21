@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import './movies.css';
-import { Button } from 'semantic-ui-react'
+import { Button, Icon } from 'semantic-ui-react'
 
 
 class Movies extends Component {
@@ -17,36 +17,41 @@ class Movies extends Component {
 
   }
 
-  coordinates = (movie, type) => {
-    console.log(movie)
-    if (type === 'lat'){
-      return (movie.geo && movie.geo.length > 0) ? movie.geo[0].geometry.coordinates[0] : false
-    }else{
-      return (movie.geo && movie.geo.length > 0) ? movie.geo[0].geometry.coordinates[1] : false
-    }
-   
-  }
-
   render() {
-    const isipad = this.props.ipad 
+    const isMobile =  (this.props.ipad || this.props.mobile)
 
     return (
       <div className="movies-wrapper">
         {
           this.state.moviesWithCoordinates.length > 0 && (
             this.state.moviesWithCoordinates.map ((movie, index) =>  
-              <div className='movie-wrapper' onClickFunction=''>
+              <div className='movie-wrapper' key={index.toString()} >
                 <div className="movie-name-date-wrapper">
                   <p className="title">{movie.title}</p>
                   <p className="grey">{movie.release_year}</p>
                 </div>
-                {(movie.geo != [] && !isipad)&&(
+                {(movie.geo != [] && !isMobile)&&(
                   <p className='location grey'>Location:</p>
                 )}
                 {movie.geo  &&(
-                <div className="coordinates">
-                  <p>{movie.geo.lat}</p>
-                  <p>{movie.geo.lng}</p>
+                <div className="coordinates-wrapper">
+                  <a href={`https://www.google.com/maps/?q=${movie.geo.lng},${movie.geo.lat}`} target="_blank" className="grey">
+                    {
+                      isMobile ? (
+                        <div className='coordinates'>
+                          <span>{movie.geo.lat.toFixed(2)},</span>
+                          <span>{movie.geo.lng.toFixed(2)}</span>
+                          <Icon name='map'  />
+                        </div>
+                      ): (
+                        <div className='coordinates'>
+                          <p>{movie.geo.lat.toFixed(2)}</p>
+                          <p>{movie.geo.lng.toFixed(2)}</p>
+                          <Icon name='map'  />
+                        </div>
+                      )
+                    }
+                  </a>
                 </div>
                 )}
               </div>
@@ -54,7 +59,7 @@ class Movies extends Component {
             )
         }
         {
-          this.props.ipad && this.state.moviesWithCoordinates.length > 0 &&(
+           isMobile && this.state.moviesWithCoordinates.length > 0 &&(
             <div className="load-more-wrapper">
               <Button className="load-more-button-movies" onClick={this.loadMore}>More</Button>
             </div>

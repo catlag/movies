@@ -43,7 +43,6 @@
 }
 /*ipad portrait*/
 @media all and (device-width: 768px) and (device-height: 1024px) and (orientation:portrait) {
-  .App { background-color: red; } /* your css rules for ipad portrait */
   .container{
     display: flex;
     flex-flow: column;
@@ -62,7 +61,6 @@
 
 /*ipad pro portrait*/
 @media all and (device-width: 1024px) and (device-height: 1366px) and (orientation:portrait) {
-  .App { background-color: red; } /* your css rules for ipad portrait */
   .container{
     display: flex;
     flex-flow: column;
@@ -82,9 +80,6 @@
 
 /*mobile*/
 @media only screen and (max-width: 600px) {
-    .App {
-        background-color: lightblue;
-    }
   .container{
     display: flex;
     flex-flow: column;

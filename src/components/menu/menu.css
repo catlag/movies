@@ -20,6 +20,17 @@
   background-color: #ffffff !important;
   color: #1681de !important;
 }
+.form-sort-wrapper .field{
+  display: flex !important;
+  align-items: center;
+}
+.form-sort-wrapper  .field label{
+  display: flex !important;
+  align-items: center;
+}
+.form-sort-wrapper  .field label input{
+  margin-right: .5em;
+}
 
 @media all and (device-width: 768px) and (device-height: 1024px) and (orientation:portrait) {
   .menu-wrapper{
@@ -102,7 +113,7 @@
   }
   .menu-title{
     display: inline;
-    font-size: 1.5em;
+    font-size: 2em;
   }
   .menu-form{
     display: flex;
@@ -114,11 +125,14 @@
     width: 100%;
   }
   .form-sort-wrapper{
-    margin-top: 2em !important;
+    margin-top: 1em !important;
     display: flex !important;
     align-items: center;
-    justify-content: space-around;
+    justify-content: space-between;
     width: 100%;
+  }
+  .sort-label{
+    font-size: 1.25em !important;
   }
 
 }

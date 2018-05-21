@@ -16,7 +16,7 @@
 }
 .title{
   font-weight: bold;
-  font-size: 1.5em;
+  font-size: 1em;
 }
 .container{
   width: 100%;
@@ -27,9 +27,10 @@
 .grey{
   color: #888888;
 }
-.coordinates p{
+.coordinates-wrapper p{
   margin-bottom: 0px
 }
+
 
 /*ipad portrait*/
 @media all and (device-width: 768px) and (device-height: 1024px) and (orientation:portrait) {
@@ -41,11 +42,11 @@
   }
   .movie-wrapper{
     width: 30%;
-    height: 10em;
+    height: 8em;
     padding: 1em;
   }
   .title{
-    font-size: 1.5em;
+    font-size: 1.25em;
     margin-bottom: 0px;
   }
   .load-more-wrapper{
@@ -68,6 +69,18 @@
   }
   .movie-name-date-wrapper p:last-child{
     font-size: 1.5em;
+  }
+  .coodinates-wrapper a:hover{
+    color: #888888;
+  }
+  .coordinates {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 80%
+  }
+  .coordinates span:last-child{
+    margin-left: 10px;
   }
 }
 
@@ -80,11 +93,11 @@
   }
   .movie-wrapper{
     width: 20em;
-    height: 10em;
+    height: 8em;
     padding: 1em;
   }
   .title{
-    font-size: 1.5em;
+    font-size: 1.25em;
     margin-bottom: 0px;
   }
   .load-more-wrapper{
@@ -108,6 +121,18 @@
   .movie-name-date-wrapper p:last-child{
     font-size: 1.5em;
   }
+  .coodinates-wrapper a:hover{
+    color: #888888;
+  }
+  .coordinates {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 80%
+  }
+  .coordinates span:last-child{
+    margin-left: 10px;
+  }
 }
 
 /*mobile*/
@@ -115,11 +140,52 @@
   .movies-wrapper{
     margin-left: 0;
     margin-top: 55%;
-    padding-left: 0px;
-    justify-content: center;
+    padding-left: 0%;
+    justify-content: flex-start;
   }
   .movie-wrapper{
-    width: 44%;
+    width: 45%;
+    padding: .5em 1em;
+    height: 9em;
+    margin: 2%;
+  }
+  .title{
+    font-size: 1.25em;
+    margin-bottom: 0px;
+    height: 3em;
+    display: flex;
+    align-items: center;
+  }
+  .load-more-wrapper{
+    display: flex;
+    justify-content: center;
+    width: 100%;
+  }
+  .load-more-button-movies{
+    height: 3em;
+    background-color: #ffffff !important;
+    color: #1681de !important;
+    margin: 2em;
+  }
+  .movie-name-date-wrapper{
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    flex-flow: column;
+    margin-bottom: .5em;
+    height: 5em;
+  }
+  .coodinates-wrapper a:hover{
+    color: #888888;
+  }
+  .coordinates {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 80%
+  }
+  .coordinates span:last-child{
+    margin-left: 10px;
   }
 }
 
