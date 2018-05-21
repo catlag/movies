@@ -41,8 +41,8 @@
   .movies-wrapper{
     margin-left: 0;
     margin-top: 25%;
-    justify-content: center;
-    padding: 3%;
+    justify-content: flex-start;
+    padding: 3% 3% 3% 5%;
   }
   .movie-wrapper{
     width: 30%;
@@ -92,11 +92,11 @@
   .movies-wrapper{
     margin-left: 0;
     margin-top: 25%;
-    justify-content: center;
-    padding: 3%;
+    justify-content: flex-start;
+    padding: 3% 3% 3% 7%;
   }
   .movie-wrapper{
-    width: 20em;
+    width: 30%;
     height: 8em;
     padding: 1em;
   }

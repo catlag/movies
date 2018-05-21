@@ -43,10 +43,10 @@ class App  extends Component {
       offset = 0
       this.setState({
         offset: 0,
-        loadMore: false
+        loadMore: false,
+        query: query
       })
     }
-    console.log(offset)
     var self = this;
     var url;
     var search = ("%"+query+"%");
@@ -136,7 +136,7 @@ class App  extends Component {
       <div className="App">
         <div className='container'>
           <Menu searchFunction={this.callApi} clearSearchFunction={this.clearSearchData} sortFunction={this.filterData} ipad={ipad} mobile={mobile}/>
-          <Movies movies={this.state.movies} ipad={ipad} mobile={mobile} />
+          <Movies movies={this.state.movies} ipad={ipad} mobile={mobile} query={this.state.query} searchFunction={this.callApi} />
         </div>
       </div>
     );

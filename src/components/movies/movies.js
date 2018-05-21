@@ -17,6 +17,10 @@ class Movies extends Component {
 
   }
 
+  loadMore = (event) =>{
+    this.props.searchFunction(this.props.query, !(isNaN(this.props.query)))
+  }
+
   render() {
     const isMobile =  (this.props.ipad || this.props.mobile)
 
