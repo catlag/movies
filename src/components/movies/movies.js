@@ -35,7 +35,7 @@ class Movies extends Component {
                 )}
                 {movie.geo  &&(
                 <div className="coordinates-wrapper">
-                  <a href={`https://www.google.com/maps/?q=${movie.geo.lng},${movie.geo.lat}`} target="_blank" className="grey">
+                  <a href={`https://www.google.com/maps/?q=${movie.geo.lat},${movie.geo.lng}`} target="_blank" className="grey">
                     {
                       isMobile ? (
                         <div className='coordinates'>
@@ -45,8 +45,10 @@ class Movies extends Component {
                         </div>
                       ): (
                         <div className='coordinates'>
-                          <p>{movie.geo.lat.toFixed(2)}</p>
-                          <p>{movie.geo.lng.toFixed(2)}</p>
+                          <div>
+                            <p>{movie.geo.lat.toFixed(2)}</p>
+                            <p>{movie.geo.lng.toFixed(2)}</p>
+                          </div>
                           <Icon name='map'  />
                         </div>
                       )

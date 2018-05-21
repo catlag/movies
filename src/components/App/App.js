@@ -32,24 +32,28 @@ class App  extends Component {
   }
 
   callApi = (query, numType) => {
+    var offset = this.state.offset
     if (query === this.state.query){
+        offset += this.state.limit
         this.setState(prevState => ({
           offset: (prevState.offset + prevState.limit),
           loadMore: true,
         }))
     }else{
+      offset = 0
       this.setState({
         offset: 0,
         loadMore: false
       })
     }
+    console.log(offset)
     var self = this;
     var url;
     var search = ("%"+query+"%");
     if (numType){
-      url = `https://data.sfgov.org/resource/wwmu-gmzc.json?$$app_token=${process.env.REACT_APP_API_TOKEN}&$limit=${this.state.limit}&$offset=0&$where=title like '${encodeURIComponent(search)}%' OR release_year = '${encodeURIComponent(query)}'`
+      url = `https://data.sfgov.org/resource/wwmu-gmzc.json?$$app_token=${process.env.REACT_APP_API_TOKEN}&$limit=${this.state.limit}&$offset=${offset}&$where=title like '${encodeURIComponent(search)}%' OR release_year = '${encodeURIComponent(query)}'`
     }else {
-      url = `https://data.sfgov.org/resource/wwmu-gmzc.json?$$app_token=${process.env.REACT_APP_API_TOKEN}&$limit=${this.state.limit}&$offset=${this.state.offset}&$where=title like '${encodeURIComponent(search)}'`
+      url = `https://data.sfgov.org/resource/wwmu-gmzc.json?$$app_token=${process.env.REACT_APP_API_TOKEN}&$limit=${this.state.limit}&$offset=${offset}&$where=title like '${encodeURIComponent(search)}'`
     }
     fetch(url)
       .then(function(resp){
@@ -96,7 +100,7 @@ class App  extends Component {
   }
 
   clearSearchData = () => {
-    this.setState({query: '', movies: [], limit : 25, offset : 0,})
+    this.setState({query: '', movies: [], limit : 25, offset : 0})
   }
 
   filterData = (type) => {

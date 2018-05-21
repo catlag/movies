@@ -30,6 +30,10 @@
 .coordinates-wrapper p{
   margin-bottom: 0px
 }
+.coordinates{
+  display: flex;
+  justify-content: space-between;
+}
 
 
 /*ipad portrait*/
